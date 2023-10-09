@@ -16,7 +16,6 @@ describe("List streets", () => {
     it("should be able to list all streets", async () => {
         await createStreetsUseCase.execute({
             name: "Rua 1",
-            country: "Brasil",
             state: "SP",
             city:"Cidade teste",
             district: "Bairro teste",
@@ -25,7 +24,6 @@ describe("List streets", () => {
 
         await createStreetsUseCase.execute({
             name: "Rua 2",
-            country: "Brasil",
             state: "SP",
             city:"Cidade teste",
             district: "Bairro teste",
@@ -34,7 +32,6 @@ describe("List streets", () => {
 
         await createStreetsUseCase.execute({
             name: "Rua 3",
-            country: "Brasil",
             state: "SP",
             city:"Cidade teste",
             district: "Bairro teste",

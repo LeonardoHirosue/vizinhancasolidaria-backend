@@ -24,20 +24,14 @@ export class CreateNotifications1666147587927 implements MigrationInterface {
                         {
                             name: "user_id",
                             type: "uuid",
-                            isNullable: true,
                         },
                         {
                             name: "type_id",
                             type: "uuid",
-                            isNullable: true,
                         },
                         {
                             name: "status",
-                            type: "status"
-                        },
-                        {
-                            name: "title",
-                            type: "varchar"
+                            type: "status",
                         },
                         {
                             name: "description",
@@ -49,12 +43,12 @@ export class CreateNotifications1666147587927 implements MigrationInterface {
                             isNullable: true
                         },
                         {
-                            name: "created_at",
+                            name: "updated_at",
                             type: "timestamp",
                             default: "now()"
                         },
                         {
-                            name: "updated_at",
+                            name: "created_at",
                             type: "timestamp",
                             default: "now()"
                         }
@@ -65,16 +59,14 @@ export class CreateNotifications1666147587927 implements MigrationInterface {
                             referencedTableName: "users",
                             referencedColumnNames: ["id"],
                             columnNames: ["user_id"],
-                            onDelete: "SET NULL",
-                            onUpdate: "SET NULL",
+                            onDelete: "CASCADE"                        
                         },
                         {
                             name: "FKNotificationType",
                             referencedTableName: "notification_types",
                             referencedColumnNames: ["id"],
                             columnNames: ["type_id"],
-                            onDelete: "SET NULL",
-                            onUpdate: "SET NULL",
+                            onDelete: "CASCADE",
                         }
                     ]
                 }

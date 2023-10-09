@@ -18,10 +18,6 @@ export class CreateStreets1666149135495 implements MigrationInterface {
                             type: "varchar"
                         },
                         {
-                            name: "country",
-                            type: "varchar"
-                        },
-                        {
                             name: "state",
                             type: "varchar"
                         },
@@ -36,6 +32,11 @@ export class CreateStreets1666149135495 implements MigrationInterface {
                         {
                             name: "postal_code",
                             type: "varchar"
+                        },
+                        {
+                            name: "created_at",
+                            type: "timestamp",
+                            default: "now()"
                         }
                     ]
                 }

@@ -10,9 +10,6 @@ class Street{
     name: string;
 
     @Column()
-    country: string;
-
-    @Column()
     state: string;
 
     @Column()

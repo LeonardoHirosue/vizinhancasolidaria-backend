@@ -17,6 +17,16 @@ export class CreateNotificationTypes1666146366553 implements MigrationInterface 
                         {
                             name: "name",
                             type: "varchar"
+                        },
+                        {
+                            name: "updated_at",
+                            type: "timestamp",                            
+                            default: "now()"
+                        },
+                        {
+                            name: "created_at",
+                            type: "timestamp",
+                            default: "now()"
                         }
                     ]
                 }

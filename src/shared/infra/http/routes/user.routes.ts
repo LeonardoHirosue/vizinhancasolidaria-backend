@@ -21,5 +21,5 @@ usersRoutes.patch(
     uploadAvatar.single("avatar"), 
     updateUserAvatarController.handle
 );
-    
+
 export { usersRoutes }

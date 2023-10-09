@@ -12,7 +12,7 @@ class CreateStreetUseCase {
         private streetsReposity: IStreetsRepository
     ){}
 
-    async execute({ name, country, state, city, district, postal_code }: ICreateStreetDTO): Promise<Street> {
+    async execute({ name, state, city, district, postal_code }: ICreateStreetDTO): Promise<Street> {
         const streetAlreadtExists = await this.streetsReposity.findByName(name);
 
         if (streetAlreadtExists) {
@@ -21,7 +21,6 @@ class CreateStreetUseCase {
 
         const street = await this.streetsReposity.create({
             name,
-            country,
             state,
             city,
             district,

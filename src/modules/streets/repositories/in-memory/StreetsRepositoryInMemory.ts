@@ -6,12 +6,11 @@ class StreetsRepositoryInMemory implements IStreetsRepository{
     
     streets: Street[] = [];
     
-    async create({ name, country, state, city, district, postal_code }: ICreateStreetDTO): Promise<Street> {
+    async create({ name, state, city, district, postal_code }: ICreateStreetDTO): Promise<Street> {
         const street = new Street();
         
         Object.assign(street, ({
             name, 
-            country, 
             state, 
             city, 
             district, 

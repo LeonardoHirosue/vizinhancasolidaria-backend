@@ -14,7 +14,6 @@ describe("Create street", () => {
     it("should be able to create a new street", async () => {
         const street = await createStreetUseCase.execute({ 
             name: "Rua Porfírio Flora",
-            country: "Brasil", 
             state:"SP",
             city: "Piedade", 
             district: "Nova Olinda", 
@@ -28,7 +27,6 @@ describe("Create street", () => {
         expect(async () => { 
             await createStreetUseCase.execute({ 
                 name: "Rua Porfírio Flora",
-                country: "Brasil", 
                 state:"SP",
                 city: "Piedade", 
                 district: "Nova Olinda", 
@@ -37,7 +35,6 @@ describe("Create street", () => {
 
             await createStreetUseCase.execute({ 
                 name: "Rua Porfírio Flora",
-                country: "Brasil", 
                 state:"SP",
                 city: "Piedade", 
                 district: "Nova Olinda", 

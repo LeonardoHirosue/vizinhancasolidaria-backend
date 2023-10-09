@@ -16,6 +16,7 @@ export class CreateInformative1666115441194 implements MigrationInterface {
                         {
                             name: "user_id",
                             type: "uuid",
+                            isNullable: true
                         },
                         {
                             name: "title",
@@ -26,7 +27,7 @@ export class CreateInformative1666115441194 implements MigrationInterface {
                             type: "varchar",
                         },
                         {
-                            name: "image",
+                            name: "url_banner",
                             type: "varchar",
                         },
                         {
@@ -38,8 +39,13 @@ export class CreateInformative1666115441194 implements MigrationInterface {
                             type: "timestamp",
                         },
                         {
-                            name: "url",
+                            name: "url_source",
                             type: "varchar",
+                        },
+                        {
+                            name: "updated_at",
+                            type: "timestamp",
+                            default: "now()"
                         },
                         {
                             name: "created_at",
@@ -54,7 +60,6 @@ export class CreateInformative1666115441194 implements MigrationInterface {
                             referencedColumnNames: ["id"],
                             columnNames: ["user_id"],
                             onDelete: "SET NULL",
-                            onUpdate: "SET NULL",
                         }
                     ]
                 }

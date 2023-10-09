@@ -7,8 +7,8 @@ export class CreateUsers1666114291751 implements MigrationInterface {
             CREATE TYPE role AS ENUM (
                 'unidentified', 
                 'resident', 
-                'host', 
-                'tutor'
+                'tutor',
+                'admin'
             );
         `);
 
@@ -58,14 +58,14 @@ export class CreateUsers1666114291751 implements MigrationInterface {
                             type: "role",
                         },
                         {
-                            name: "isAdmin",
-                            type: "boolean",
-                            default: false
-                        },
-                        {
                             name: "avatar",
                             type: "varchar",
                             isNullable: true
+                        },
+                        {
+                            name: "updated_at",
+                            type: "timestamp",
+                            default: "now()"
                         },
                         {
                             name: "created_at",

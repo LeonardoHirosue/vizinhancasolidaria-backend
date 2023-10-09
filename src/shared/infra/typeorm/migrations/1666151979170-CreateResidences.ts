@@ -14,17 +14,9 @@ export class CreateResidences1666151979170 implements MigrationInterface {
                             isPrimary: true
                         },
                         {
-                            name: "group_id",
-                            type: "uuid"
-                        },
-                        {
-                            name: "street_id",
-                            type: "uuid"
-                        },
-                        {
-                            name: "name",
-                            type: "varchar",
-                            isUnique: true
+                            name: "groups_streets_id",
+                            type: "uuid",
+                            isNullable: true
                         },
                         {
                             name: "number",
@@ -36,6 +28,11 @@ export class CreateResidences1666151979170 implements MigrationInterface {
                             isNullable: true
                         },
                         {
+                            name: "updated_at",
+                            type: "timestamp",
+                            default: "now()"
+                        },
+                        {
                             name: "created_at",
                             type: "timestamp",
                             default: "now()"
@@ -43,17 +40,10 @@ export class CreateResidences1666151979170 implements MigrationInterface {
                     ],
                     foreignKeys: [
                         {
-                            name: "FKGroup",
-                            referencedTableName: "groups",
+                            name: "FKGroupStreet",
+                            referencedTableName: "groups_streets",
                             referencedColumnNames: ["id"],
-                            columnNames: ["group_id"],
-                            onDelete: "SET NULL",
-                        },
-                        {
-                            name: "FKStreet",
-                            referencedTableName: "streets",
-                            referencedColumnNames: ["id"],
-                            columnNames: ["street_id"],
+                            columnNames: ["groups_streets_id"],
                             onDelete: "SET NULL",
                         }
                     ]

@@ -24,7 +24,6 @@ describe("Delete street", () => {
         expect(async () => {
             const street = await createStreetUseCase.execute({ 
                 name: "Rua Porfírio Flora",
-                country: "Brasil", 
                 state:"SP",
                 city: "Piedade", 
                 district: "Nova Olinda", 

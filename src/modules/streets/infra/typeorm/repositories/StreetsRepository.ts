@@ -14,7 +14,6 @@ class StreetsRepository implements IStreetsRepository {
 
     async create({
         name,
-        country,
         state,
         city,
         district,
@@ -22,7 +21,6 @@ class StreetsRepository implements IStreetsRepository {
     }: ICreateStreetDTO): Promise<Street> {
         const street = this.repository.create({
             name,
-            country,
             state,
             city,
             district,

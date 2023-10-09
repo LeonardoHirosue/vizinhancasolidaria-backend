@@ -24,7 +24,21 @@ export class CreatePets1666153029371 implements MigrationInterface {
                         {
                             name: "breed",
                             type: "varchar"
+                        },
+                        {
+                            name: "description",
+                            type: "varchar"
+                        },
+                        {
+                            name: "url_image",
+                            type: "varchar",
+                        },
+                        {
+                            name: "created_at",
+                            type: "timestamp",
+                            default: "now()"
                         }
+
                     ],
                     foreignKeys: [
                         {

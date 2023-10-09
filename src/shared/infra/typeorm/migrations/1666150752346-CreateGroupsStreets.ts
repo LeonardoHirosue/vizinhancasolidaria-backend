@@ -15,7 +15,7 @@ export class CreateGroupsStreets1666150752346 implements MigrationInterface {
                         },
                         {
                             name: "group_id",
-                            type: "uuid"
+                            type: "uuid",
                         },
                         {
                             name: "street_id",
@@ -36,14 +36,14 @@ export class CreateGroupsStreets1666150752346 implements MigrationInterface {
                             referencedTableName: "groups",
                             referencedColumnNames: ["id"],
                             columnNames: ["group_id"],
-                            onDelete: "CASCADE",
+                            onDelete: "CASCADE"
                         },
                         {
                             name: "FKStreet",
                             referencedTableName: "streets",
                             referencedColumnNames: ["id"],
                             columnNames: ["street_id"],
-                            onDelete: "CASCADE",
+                            onDelete: "CASCADE"
                         }
                     ]
                 }

@@ -1,11 +1,11 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 enum Role {
     UNIDENTIFIED = "unidentified", 
     RESIDENT = "resident", 
-    HOST = "host", 
-    TUTOR = "tutor"
+    TUTOR = "tutor",
+    ADMIN = "admin"
 }
 
 @Entity("users")
@@ -41,10 +41,10 @@ class User {
     user_role: Role;
 
     @Column()
-    isAdmin: Boolean;
-
-    @Column()
     avatar: string;
+
+    @UpdateDateColumn()
+    updated_at: Date;
 
     @CreateDateColumn()
     created_at: Date;

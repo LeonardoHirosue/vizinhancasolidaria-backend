@@ -6,16 +6,16 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 class CreateUserController{
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const { id, name, birth_date, cell, email, password, rg, cpf } = request.body;
+        const { name, email, password, birth_date, cell, rg, cpf } = request.body;
 
         const createUserUseCase = container.resolve(CreateUserUseCase);
         
         await createUserUseCase.execute({ 
-            id,
-            name, 
+            name,
+            email,
+            password,
             birth_date, 
-            cell, email, 
-            password, 
+            cell, 
             rg, 
             cpf
         });

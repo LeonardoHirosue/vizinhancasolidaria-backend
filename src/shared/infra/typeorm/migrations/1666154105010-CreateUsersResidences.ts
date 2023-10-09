@@ -1,19 +1,24 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateResidenceResidents1666154105010 implements MigrationInterface {
+export class CreateUsersResidences1666154105010 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table(
                 {
-                    name: "residence_residents",
+                    name: "users_residences",
                     columns: [
+                        {
+                            name: "id",
+                            type: "uuid",
+                            isNullable: true,
+                        },
                         {
                             name: "residence_id",
                             type: "uuid"                            
                         },
                         {
-                            name: "resident_id",
+                            name: "user_id",
                             type: "uuid"                            
                         }                        
                     ],
@@ -23,14 +28,14 @@ export class CreateResidenceResidents1666154105010 implements MigrationInterface
                             referencedTableName: "residences",
                             referencedColumnNames: ["id"],
                             columnNames: ["residence_id"],
-                            onDelete: "SET NULL"
+                            onDelete: "CASCADE"
                         },
                         {
-                            name: "FKResident",
+                            name: "FKUsers",
                             referencedTableName: "users",
                             referencedColumnNames: ["id"],
-                            columnNames: ["resident_id"],
-                            onDelete: "SET NULL",
+                            columnNames: ["user_id"],
+                            onDelete: "CASCADE",
                         }
                     ]
                 }
@@ -39,6 +44,6 @@ export class CreateResidenceResidents1666154105010 implements MigrationInterface
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("residence_residents");
+        await queryRunner.dropTable("users_residences");
     }
 }
