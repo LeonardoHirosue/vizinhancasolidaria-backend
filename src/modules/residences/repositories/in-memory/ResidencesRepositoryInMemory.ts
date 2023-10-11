@@ -6,7 +6,7 @@ import { IResidencesRepository } from "../IResidencesRepository";
 class ResidencesRepositoryInMemory implements IResidencesRepository {
     residences: Residence[] = [];
 
-    async create({number, phone, groups_streets_id}: ICreateResidenceDTO): Promise<void> {
+    async create({number, phone, groups_streets_id}: ICreateResidenceDTO): Promise<Residence> {
         const residence = new Residence();
 
         Object.assign(residence, {
@@ -16,6 +16,8 @@ class ResidencesRepositoryInMemory implements IResidencesRepository {
         });
 
         this.residences.push(residence);
+
+        return residence;
     }
 }
 

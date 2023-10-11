@@ -6,7 +6,7 @@ import { IGroupsStreetsRepository } from "../IGroupsStreetsRepository";
 class GroupsStreetsRepositoryInMemory implements IGroupsStreetsRepository{
     groupsStreets: GroupStreet[] = []
 
-    async create({group_id, street_id, start_number, end_number}: ICreateGroupStreetDTO): Promise<void> {
+    async create({group_id, street_id, start_number, end_number}: ICreateGroupStreetDTO): Promise<GroupStreet> {
         const groupStreet = new GroupStreet();
 
         Object.assign(groupStreet, {
@@ -17,6 +17,8 @@ class GroupsStreetsRepositoryInMemory implements IGroupsStreetsRepository{
         });
 
         this.groupsStreets.push(groupStreet);
+
+        return groupStreet;
     }
 }
 

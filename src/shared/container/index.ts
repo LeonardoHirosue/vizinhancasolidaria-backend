@@ -12,8 +12,14 @@ import { IStreetsRepository } from "@modules/streets/repositories/IStreetsReposi
 import { StreetsRepository } from "@modules/streets/infra/typeorm/repositories/StreetsRepository";
 import { IGroupsRepository } from "@modules/groups/repositories/IGroupsRepository";
 import { GroupsRepository } from "@modules/groups/infra/typeorm/repositories/GroupsRepository";
-import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { IGroupsStreetsRepository } from "@modules/groupsStreets/repositories/IGroupsStreetsRepository";
+import { GroupsStreetsRepository } from "@modules/groupsStreets/infra/typeorm/repositories/GroupsStreetsRepository";
+import { IResidencesRepository } from "@modules/residences/repositories/IResidencesRepository";
+import { ResidencesRepository } from "@modules/residences/infra/typeorm/repositories/ResidencesRepository";
+import { IUsersResidencesRepository } from "@modules/usersResidences/repositories/IUsersResidencesRepository";
+import { UsersResidencesRepository } from "@modules/usersResidences/infra/typeorm/repositories/UsersResidencesRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -38,6 +44,21 @@ container.registerSingleton<IStreetsRepository>(
 container.registerSingleton<IGroupsRepository>(
     "GroupsRepository",
     GroupsRepository
+);
+
+container.registerSingleton<IGroupsStreetsRepository>(
+    "GroupsStreetsRepository",
+    GroupsStreetsRepository
+);
+
+container.registerSingleton<IResidencesRepository>(
+    "ResidencesRepository",
+    ResidencesRepository
+);
+
+container.registerSingleton<IUsersResidencesRepository>(
+    "UsersResidencesRepository",
+    UsersResidencesRepository
 );
 
 container.registerSingleton<IUsersTokensRepository>(

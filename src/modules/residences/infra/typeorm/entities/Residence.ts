@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("residences")
@@ -10,7 +10,7 @@ class Residence {
     groups_streets_id: string;
 
     @Column()
-    number: string;
+    number: number;
 
     @Column()
     phone: string;
