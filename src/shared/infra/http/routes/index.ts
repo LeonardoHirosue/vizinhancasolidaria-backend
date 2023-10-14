@@ -10,6 +10,7 @@ import { groupStreetRoutes } from "./groupStreet.routes";
 import { residenceRoutes } from "./residence.routes";
 import { userResidenceRoutes } from "./userResidence.routes";
 import { carRoutes } from "./car.routes";
+import { petRoutes } from "./pet.routes";
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.use("/groups", groupsRoutes);
 router.use("/groups-streets", groupStreetRoutes);
 router.use("/residences", residenceRoutes);
 router.use("/users-residences", userResidenceRoutes);
-router.use("/cars", carRoutes)
+router.use("/cars", carRoutes);
+router.use("/pets", petRoutes);
 
 export { router }
