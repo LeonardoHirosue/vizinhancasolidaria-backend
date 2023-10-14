@@ -11,6 +11,7 @@ class CreateResidenceUseCase {
         @inject("ResidencesRepository")
         private residencesRepository: IResidencesRepository
     ){}
+    
     async execute({groups_streets_id, number, phone}: ICreateResidenceDTO): Promise<Residence> {
         const residence = this.residencesRepository.create({
             groups_streets_id,

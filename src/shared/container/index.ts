@@ -18,6 +18,8 @@ import { IResidencesRepository } from "@modules/residences/repositories/IResiden
 import { ResidencesRepository } from "@modules/residences/infra/typeorm/repositories/ResidencesRepository";
 import { IUsersResidencesRepository } from "@modules/usersResidences/repositories/IUsersResidencesRepository";
 import { UsersResidencesRepository } from "@modules/usersResidences/infra/typeorm/repositories/UsersResidencesRepository";
+import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
+import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 
@@ -60,6 +62,11 @@ container.registerSingleton<IUsersResidencesRepository>(
     "UsersResidencesRepository",
     UsersResidencesRepository
 );
+
+container.registerSingleton<ICarsRepository>(
+    "CarsRepository",
+    CarsRepository
+)
 
 container.registerSingleton<IUsersTokensRepository>(
     "UsersTokensRepository",
