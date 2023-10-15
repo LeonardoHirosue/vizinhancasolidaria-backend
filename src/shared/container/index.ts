@@ -22,6 +22,8 @@ import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository";
 import { IPetsRepository } from "@modules/pets/repositories/IPetsRepository";
 import { PetsRepository } from "@modules/pets/infra/typeorm/repositories/PetsRepository";
+import { IInformativeRepository } from "@modules/informative/repositories/IInformativeRepository";
+import { InformativeRepository } from "@modules/informative/infra/typeorm/repositories/InformativeRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 
@@ -73,7 +75,12 @@ container.registerSingleton<ICarsRepository>(
 container.registerSingleton<IPetsRepository>(
     "PetsRepository",
     PetsRepository
-)
+);
+
+container.registerSingleton<IInformativeRepository>(
+    "InformativeRepository",
+    InformativeRepository
+);
 
 container.registerSingleton<IUsersTokensRepository>(
     "UsersTokensRepository",

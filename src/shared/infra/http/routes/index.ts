@@ -11,6 +11,7 @@ import { residenceRoutes } from "./residence.routes";
 import { userResidenceRoutes } from "./userResidence.routes";
 import { carRoutes } from "./car.routes";
 import { petRoutes } from "./pet.routes";
+import { informativeRoutes } from "./informative.routes";
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.use("/residences", residenceRoutes);
 router.use("/users-residences", userResidenceRoutes);
 router.use("/cars", carRoutes);
 router.use("/pets", petRoutes);
+router.use("/informatives", informativeRoutes)
 
 export { router }

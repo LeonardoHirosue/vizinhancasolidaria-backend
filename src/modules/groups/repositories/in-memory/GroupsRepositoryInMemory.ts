@@ -3,7 +3,7 @@ import { Group } from "@modules/groups/infra/typeorm/entities/Group";
 import { IGroupsRepository } from "../IGroupsRepository";
 
 class GroupsRepositoryInMemory implements IGroupsRepository{
-    groups: Group[] =[];
+    groups: Group[] = [];
     
     async findByName(name: string): Promise<Group> {
         return this.groups.find((group) => group.name === name);
