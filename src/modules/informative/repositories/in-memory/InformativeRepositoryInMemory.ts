@@ -4,7 +4,8 @@ import { IInformativeRepository } from "../IInformativeRepository";
 import { Informative } from "@modules/informative/infra/typeorm/entities/Informative";
 
 class InformativeRepositoryInMemory implements IInformativeRepository{
-    informative: Informative[] = [];
+        
+    informatives: Informative[] = [];
 
     async create({ id, user_id, title, description, url_banner, url_source, start_date, end_date }: ICreateInformativeDTO): Promise<Informative>{
         const informative = new Informative();
@@ -20,9 +21,23 @@ class InformativeRepositoryInMemory implements IInformativeRepository{
             end_date
         });
 
-        this.informative.push(informative);
+        this.informatives.push(informative);
 
         return informative;
+    }
+
+    async list(): Promise<Informative[]> {
+        return this.informatives;
+    }
+
+    async findById(id: string): Promise<Informative> {
+        return this.informatives.find((informative) => informative.id === id);
+    }
+
+    async delete(id: string): Promise<void> {
+        const informative = this.informatives.findIndex((informative) => informative.id === id);
+
+        this.informatives.splice(informative, 1);
     }
 }
 

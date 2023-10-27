@@ -29,6 +29,18 @@ class InformativeRepository implements IInformativeRepository{
 
         return informative;
     }
+
+    async list(): Promise<Informative[]> {
+        return this.repository.find();
+    }
+
+    async findById(id: string): Promise<Informative> {
+        return this.repository.findOne(id);
+    }
+
+    async delete(id: string): Promise<void> {
+        this.repository.delete(id);
+    }
 }
 
 export { InformativeRepository }
