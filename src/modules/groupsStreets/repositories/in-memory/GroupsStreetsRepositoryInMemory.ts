@@ -20,6 +20,10 @@ class GroupsStreetsRepositoryInMemory implements IGroupsStreetsRepository{
 
         return groupStreet;
     }
+
+    async findByStreetId(street_id: string): Promise<GroupStreet> {
+        return this.groupsStreets.find((groupStreet) => groupStreet.street_id === street_id);
+    }
 }
 
 export { GroupsStreetsRepositoryInMemory }

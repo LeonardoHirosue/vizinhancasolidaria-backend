@@ -26,6 +26,10 @@ class ResidencesRepository implements IResidencesRepository {
         return residence;
     }
 
+    async findAllByGroupStreetId (groups_streets_id: string): Promise<Residence[]> {
+        return this.repository.find({groups_streets_id});
+    }
+
 }
 
 export { ResidencesRepository }

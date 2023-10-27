@@ -3,6 +3,7 @@ import { Residence } from "../infra/typeorm/entities/Residence";
 
 interface IResidencesRepository {
     create(data: ICreateResidenceDTO): Promise<Residence>;
+    findAllByGroupStreetId(groups_streets_id: string): Promise<Residence[]>
 }
 
 export { IResidencesRepository }

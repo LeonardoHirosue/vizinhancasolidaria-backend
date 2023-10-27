@@ -27,6 +27,10 @@ class GroupsStreetsRepository implements IGroupsStreetsRepository{
         return groupStreet;
     }
 
+    async findByStreetId(street_id: string): Promise<GroupStreet> {
+        return this.repository.findOne({street_id});
+    }
+
 }
 
 export { GroupsStreetsRepository }

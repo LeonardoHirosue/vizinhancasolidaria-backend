@@ -7,6 +7,7 @@ interface ICreateUserDTO{
     password: string; 
     rg: string; 
     cpf: string;
+    role: string;
     avatar?: string; 
 }
 
