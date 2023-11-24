@@ -1,4 +1,5 @@
 import { ICreateStreetDTO } from "@modules/streets/dtos/ICreateStreetDTO";
+import { IFindStreetDTO } from "@modules/streets/dtos/IFindStreetDTO";
 import { Street } from "@modules/streets/infra/typeorm/entities/Street";
 import { IStreetsRepository } from "../IStreetsRepository";
 
@@ -22,8 +23,8 @@ class StreetsRepositoryInMemory implements IStreetsRepository{
         return street;
     }
     
-    async findByName(name: string): Promise<Street> {
-        return this.streets.find((street) => street.name === name);
+    async findStreet({name, city, district, postal_code, state }: ICreateStreetDTO): Promise<Street> {
+        return this.streets.find((street) => `${street.name}${street.city}${street.district}${postal_code}${state}` === `${name}${city}${district}${postal_code}${state}`);
     }
 
     async list(): Promise<Street[]> {

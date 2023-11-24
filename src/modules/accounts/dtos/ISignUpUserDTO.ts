@@ -2,7 +2,7 @@ interface ISignUpUserDTO {
     id?: string;
     name: string;
     birth_date: Date; 
-    cell: string; 
+    cellphone: string; 
     email: string; 
     password: string; 
     rg: string; 
@@ -13,7 +13,8 @@ interface ISignUpUserDTO {
     district: string;
     street: string;
     residence_number: number; 
-    role: string;
+    role?: string;
+    desired_role: string;
     avatar?: string;
 }
 

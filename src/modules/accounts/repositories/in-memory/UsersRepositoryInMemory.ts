@@ -7,25 +7,27 @@ class UsersRepositoryInMemory implements IUsersRepository{
   
     async create({
         name,
-        birth_date,
-        cell,
-        email,
-        password,
-        rg,
+        email, 
+        password, 
+        birth_date, 
+        cellphone, 
+        rg, 
         cpf,
-        role
+        desired_role,
+        avatar, 
     }: ICreateUserDTO): Promise<User> {
         const user = new User();
 
         Object.assign(user, {
             name,
-            birth_date,
-            cell,
-            email,
-            password,
-            rg,
+            email, 
+            password, 
+            birth_date, 
+            cellphone, 
+            rg, 
             cpf,
-            role
+            desired_role,
+            avatar, 
         });
 
         this.users.push(user);
@@ -33,6 +35,10 @@ class UsersRepositoryInMemory implements IUsersRepository{
         return user;
     }
    
+    async list(): Promise<User[]> {
+        throw this.users;
+    }
+
     async findByEmail(email: string): Promise<User> {
         return this.users.find((user) => user.email === email);
     }

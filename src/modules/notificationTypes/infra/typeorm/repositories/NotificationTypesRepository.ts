@@ -11,9 +11,10 @@ class NotificationTypesRepository implements INotificationTypesRepository{
         this.repository = getRepository(NotificationType);
     }
     
-    async create(name: string): Promise<NotificationType> {
+    async create(name: string, label: string): Promise<NotificationType> {
         const notificationType = this.repository.create({
-            name
+            name,
+            label
         });
         
         await this.repository.save(notificationType);

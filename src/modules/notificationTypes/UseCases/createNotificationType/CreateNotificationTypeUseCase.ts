@@ -11,8 +11,8 @@ class CreateNotificationTypeUseCase{
         private notificationTypesRepository: INotificationTypesRepository
     ){}
 
-    async execute(name: string): Promise<NotificationType>{
-        const notificationType = this.notificationTypesRepository.create(name);
+    async execute(name: string, label:string): Promise<NotificationType>{
+        const notificationType = this.notificationTypesRepository.create(name, label);
 
         return notificationType;
     }

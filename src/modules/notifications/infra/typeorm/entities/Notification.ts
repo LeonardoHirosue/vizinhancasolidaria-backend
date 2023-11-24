@@ -1,8 +1,5 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-
-import { User } from "@modules/accounts/infra/typeorm/entities/User";
-import { NotificationType } from "../../../../notificationTypes/infra/typeorm/entities/NotificationType";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 enum Status {
     OPENED = "opened", 
@@ -15,28 +12,17 @@ class Notification {
     @PrimaryColumn()
     id: string;
 
-    @ManyToOne(() => NotificationType)
-    @JoinColumn({ name: "type_id"})
-    notification_type: NotificationType;
+    @Column()
+    user_id: string;
 
     @Column()
     type_id: string;
-    
-    @ManyToOne(() => User)
-    @JoinColumn({ name: "user_id" })
-    user: User;
-
-    @Column()
-    user_id: string;
 
     @Column({
         type: "enum",
         enum: Status,
     })
     status: Status;
-
-    @Column()
-    title: string;
 
     @Column()
     description: string;
@@ -47,7 +33,7 @@ class Notification {
     @CreateDateColumn()
     created_at: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updated_at: Date;
 
     constructor(){

@@ -14,11 +14,6 @@ export class CreateResidences1700671393194 implements MigrationInterface {
                             isPrimary: true
                         },
                         {
-                            name: "user_id",
-                            type: "uuid",
-                            isNullable: true
-                        },
-                        {
                             name: "street_id",
                             type: "uuid",
                             isNullable: true
@@ -46,13 +41,6 @@ export class CreateResidences1700671393194 implements MigrationInterface {
                             columnNames: ["street_id"],
                             onDelete: "SET NULL",
                         },
-                        {
-                            name: "FKUser",
-                            referencedTableName: "users",
-                            referencedColumnNames: ["id"],
-                            columnNames: ["user_id"],
-                            onDelete: "SET NULL",
-                        }
                     ]
                 }
             )

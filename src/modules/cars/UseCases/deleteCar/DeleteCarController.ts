@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+import { DeleteCarUseCase } from "./DeleteCarUseCase";
 
-import { DeleteGroupUseCase } from "./DeleteGroupUseCase";
 
-class DeleteGroupController {
+class DeleteCarController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        const deleteGroupUseCase = container.resolve(DeleteGroupUseCase);
+        const deleteCarController = container.resolve(DeleteCarUseCase)
 
-        await deleteGroupUseCase.execute(id);
+        await deleteCarController.execute(id);
 
         return response.status(204).send();
     }
 }
 
-export { DeleteGroupController }
+export { DeleteCarController }

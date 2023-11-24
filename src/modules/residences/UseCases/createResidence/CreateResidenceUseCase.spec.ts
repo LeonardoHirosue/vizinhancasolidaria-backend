@@ -13,8 +13,7 @@ describe("Create Residence", () => {
     it("should be able to create a new residence", async () => {
         await createResidenceUseCase.execute({
             number: 222,
-            phone: "+551532445054",
-            groups_streets_id: "groups-streets-uuid",
+            street_id: "street-uuid",
         });
     })
 })

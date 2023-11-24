@@ -1,6 +1,6 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateUsers1666114291751 implements MigrationInterface {
+export class CreateUsers1700679689845 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -23,6 +23,10 @@ export class CreateUsers1666114291751 implements MigrationInterface {
                             isPrimary: true
                         },
                         {
+                            name: "residence_id",
+                            type: "uuid"
+                        },
+                        {
                             name: "name",
                             type: "varchar"
                         },
@@ -40,7 +44,7 @@ export class CreateUsers1666114291751 implements MigrationInterface {
                             type: "timestamp"
                         },
                         {
-                            name: "cell",
+                            name: "cellphone",
                             type: "varchar"
                         },
                         {
@@ -54,7 +58,11 @@ export class CreateUsers1666114291751 implements MigrationInterface {
                             isUnique: true
                         },
                         {
-                            name: "user_role",
+                            name: "role",
+                            type: "role",
+                        },
+                        {
+                            name: "desired_role",
                             type: "role",
                         },
                         {
@@ -72,6 +80,15 @@ export class CreateUsers1666114291751 implements MigrationInterface {
                             type: "timestamp",
                             default: "now()"
                         }
+                    ],
+                    foreignKeys: [
+                        {
+                            name: "FKResidence",
+                            referencedTableName: "residences",
+                            referencedColumnNames: ["id"],
+                            columnNames: ["residence_id"],
+                            onDelete: "SET NULL",
+                        }
                     ]
                 }
             )
@@ -82,4 +99,5 @@ export class CreateUsers1666114291751 implements MigrationInterface {
         await queryRunner.dropTable("users");
         await queryRunner.query(`DROP TYPE role`);
     }
+
 }

@@ -7,13 +7,10 @@ class Residence {
     id: string;
 
     @Column()
-    groups_streets_id: string;
+    street_id: string;
 
     @Column()
     number: number;
-
-    @Column()
-    phone: string;
 
     @UpdateDateColumn()
     updated_at: Date;

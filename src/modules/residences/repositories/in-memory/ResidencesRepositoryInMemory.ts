@@ -7,13 +7,12 @@ class ResidencesRepositoryInMemory implements IResidencesRepository {
 
     residences: Residence[] = [];
 
-    async create({number, phone, groups_streets_id}: ICreateResidenceDTO): Promise<Residence> {
+    async create({number, street_id}: ICreateResidenceDTO): Promise<Residence> {
         const residence = new Residence();
 
         Object.assign(residence, {
             number,
-            phone,
-            groups_streets_id
+            street_id
         });
 
         this.residences.push(residence);
@@ -21,8 +20,12 @@ class ResidencesRepositoryInMemory implements IResidencesRepository {
         return residence;
     }
 
-    async findAllByGroupStreetId(groups_streets_id: string): Promise<Residence[]> {
-        return this.residences.filter((residence) => residence.groups_streets_id === groups_streets_id);
+    async findAllByStreetId(street_id: string): Promise<Residence[]> {
+        return this.residences.filter((residence) => residence.street_id === street_id);
+    }
+    
+    async findResidence({street_id, number}: ICreateResidenceDTO): Promise<Residence> {
+        return this.residences.find((residence) => `${residence.street_id}${residence.number}` === `${street_id}${number}`);
     }
 }
 

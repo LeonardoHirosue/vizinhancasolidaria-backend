@@ -27,6 +27,14 @@ class CarsRepository implements ICarsRepository{
 
         return car;
     }
+
+    async findById(id: string): Promise<Car> {
+        return await this.repository.findOne(id);
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.repository.delete(id);
+    }
 }
 
 export { CarsRepository }

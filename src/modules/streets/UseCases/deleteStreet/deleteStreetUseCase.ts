@@ -15,7 +15,7 @@ class DeleteStreetUseCase {
         const street = await this.streetsRepository.findById(id);
 
         if (!street) {
-            throw new NotFoundError("Street not founded");
+            throw new NotFoundError("Street not found");
         }
 
         await this.streetsRepository.delete(id);

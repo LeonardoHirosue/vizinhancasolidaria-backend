@@ -13,8 +13,21 @@ const createStreetController = new CreateStreetController();
 const listStreetController = new ListStreetsController();
 const deleteStreetController = new DeleteStreetController();
 
-streetRoutes.post("/", ensureAuthenticate, ensureAdmin, createStreetController.handle);
-streetRoutes.get("/", ensureAuthenticate, listStreetController.handle);
-streetRoutes.delete("/:id", ensureAuthenticate, ensureAdmin, deleteStreetController.handle);
+streetRoutes.post("/", 
+    // ensureAuthenticate, 
+    // ensureAdmin, 
+    createStreetController.handle
+);
+
+streetRoutes.get("/", 
+    // ensureAuthenticate, 
+    listStreetController.handle
+);
+
+streetRoutes.delete("/:id", 
+    // ensureAuthenticate, 
+    // ensureAdmin, 
+    deleteStreetController.handle
+);
 
 export { streetRoutes }

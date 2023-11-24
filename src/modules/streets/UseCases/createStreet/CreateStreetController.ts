@@ -7,7 +7,6 @@ class CreateStreetController {
     async handle(request: Request, response: Response): Promise<Response>{
         const {
             name,
-            country,
             state,
             city,
             district,
@@ -18,11 +17,10 @@ class CreateStreetController {
 
         const street = await createStreetUseCase.execute({
             name,
-            country,
+            district,
+            postal_code,
             state,
             city,
-            district,
-            postal_code
         });
 
         return response.status(201).json(street);

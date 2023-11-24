@@ -12,11 +12,10 @@ class CreateResidenceUseCase {
         private residencesRepository: IResidencesRepository
     ){}
     
-    async execute({groups_streets_id, number, phone}: ICreateResidenceDTO): Promise<Residence> {
+    async execute({street_id, number}: ICreateResidenceDTO): Promise<Residence> {
         const residence = this.residencesRepository.create({
-            groups_streets_id,
-            number,
-            phone
+            street_id,
+            number
         });
 
         return residence;

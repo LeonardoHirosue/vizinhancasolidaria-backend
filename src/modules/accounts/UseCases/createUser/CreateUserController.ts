@@ -7,20 +7,20 @@ class CreateUserController{
     async handle(request: Request, response: Response): Promise<Response> {
 
         const { 
-            name, 
-            email, 
-            password, 
-            cell, 
-            birth_date, 
-            rg, 
+            name,
+            email,
+            password,
+            cellphone,
+            birth_date,
+            rg,
             cpf,
-            postal_code, 
-            state, 
-            city, 
-            district, 
-            street, 
-            residence_number, 
-            role 
+            postal_code,
+            state,
+            city,
+            district,
+            street,
+            residence_number,
+            desired_role
         } = request.body;
 
         const createUserUseCase = container.resolve(CreateUserUseCase);
@@ -29,7 +29,7 @@ class CreateUserController{
             name, 
             email, 
             password, 
-            cell, 
+            cellphone, 
             birth_date, 
             rg, 
             cpf,
@@ -39,7 +39,7 @@ class CreateUserController{
             district, 
             street, 
             residence_number, 
-            role 
+            desired_role 
         });
 
         return response.status(201).send();

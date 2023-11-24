@@ -1,13 +1,14 @@
 interface ICreateUserDTO{
     id?: string;
+    residence_id: string;
     name: string;
-    birth_date: Date; 
-    cell: string; 
     email: string; 
     password: string; 
+    birth_date: Date; 
+    cellphone: string; 
     rg: string; 
     cpf: string;
-    role: string;
+    desired_role: string;
     avatar?: string; 
 }
 

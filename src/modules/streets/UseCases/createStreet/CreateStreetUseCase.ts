@@ -13,7 +13,7 @@ class CreateStreetUseCase {
     ){}
 
     async execute({ name, state, city, district, postal_code }: ICreateStreetDTO): Promise<Street> {
-        const streetAlreadtExists = await this.streetsReposity.findByName(name);
+        const streetAlreadtExists = await this.streetsReposity.findStreet({ name, state, city, district, postal_code });
 
         if (streetAlreadtExists) {
             throw new BadRequestError("Street already exists!");

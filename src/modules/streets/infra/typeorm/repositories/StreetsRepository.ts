@@ -32,8 +32,22 @@ class StreetsRepository implements IStreetsRepository {
         return street;
     }
 
-    async findByName(name: string): Promise<Street> {
-        return await this.repository.findOne({ name });
+    async findStreet({ 
+        name, 
+        city, 
+        district, 
+        postal_code, 
+        state 
+    }: ICreateStreetDTO): Promise<Street> {
+        return await this.repository.findOne({
+            where: {
+                name,
+                city,
+                district,
+                postal_code,
+                state
+            } 
+        });
     }
 
     async list(): Promise<Street[]> {

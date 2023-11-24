@@ -27,6 +27,14 @@ class PetsRepository implements IPetsRepository{
 
         return pet;
     }
+
+    async findById(id: string): Promise<Pet> {
+        return await this.repository.findOne(id);
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.repository.delete(id);
+    }
 }
 
 export { PetsRepository }

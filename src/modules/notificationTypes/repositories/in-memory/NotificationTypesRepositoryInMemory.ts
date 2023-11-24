@@ -6,11 +6,12 @@ class NotificationTypesRepositoryInMemory implements INotificationTypesRepositor
     
     notificationTypes: NotificationType[] = [];
     
-    async create(name: string): Promise<NotificationType> {
+    async create(name: string, label: string): Promise<NotificationType> {
         const notificationType = new NotificationType();
         
         Object.assign(notificationType, {
-            name
+            name,
+            label
         })
         
         this.notificationTypes.push(notificationType);

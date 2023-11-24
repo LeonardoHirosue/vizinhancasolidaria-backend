@@ -13,12 +13,11 @@ class ResidencesRepository implements IResidencesRepository {
         this.repository = getRepository(Residence);
     }
 
-    async create({ id, groups_streets_id, number, phone }: ICreateResidenceDTO): Promise<Residence> {
+    async create({ id, street_id, number }: ICreateResidenceDTO): Promise<Residence> {
         const residence = this.repository.create({
             id,
-            groups_streets_id,
-            number,
-            phone
+            street_id,
+            number
         });
 
         await this.repository.save(residence);
@@ -26,8 +25,18 @@ class ResidencesRepository implements IResidencesRepository {
         return residence;
     }
 
-    async findAllByGroupStreetId (groups_streets_id: string): Promise<Residence[]> {
-        return this.repository.find({groups_streets_id});
+    async findAllByStreetId (street_id: string): Promise<Residence[]> {
+        return this.repository.find({street_id});
+    }
+
+    
+    async findResidence({ street_id, number }: ICreateResidenceDTO): Promise<Residence> {
+        return await this.repository.findOne({
+            where: {
+                number,
+                street_id
+            }
+        });
     }
 
 }

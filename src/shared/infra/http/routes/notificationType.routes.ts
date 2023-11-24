@@ -13,8 +13,16 @@ const createNotificationTypeController = new CreateNotificationTypeController();
 const deleteNotificationTypeController = new DeleteNotificationTypeController();
 const listNotificationTypesController = new ListNotificationTypesController();
 
-notificationTypesRoutes.post("/", ensureAuthenticate, ensureAdmin, createNotificationTypeController.handle);
+notificationTypesRoutes.post("/", 
+    // ensureAuthenticate, 
+    // ensureAdmin, 
+    createNotificationTypeController.handle
+);
+
 notificationTypesRoutes.delete("/:id", ensureAuthenticate, ensureAdmin, deleteNotificationTypeController.handle);
-notificationTypesRoutes.get("/", ensureAuthenticate, listNotificationTypesController.handle);
+notificationTypesRoutes.get("/", 
+    // ensureAuthenticate, 
+    listNotificationTypesController.handle
+);
 
 export { notificationTypesRoutes }

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("streets")
@@ -10,16 +10,19 @@ class Street{
     name: string;
 
     @Column()
+    district: string;
+
+    @Column()
+    postal_code: string;
+
+    @Column()
     state: string;
 
     @Column()
     city: string;
 
-    @Column()
-    district: string;
-
-    @Column()
-    postal_code: string;
+    @CreateDateColumn()
+    created_at: Date;
 
     constructor(){
         if (!this.id) {

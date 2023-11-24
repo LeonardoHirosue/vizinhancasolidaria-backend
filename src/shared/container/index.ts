@@ -10,14 +10,8 @@ import { INotificationTypesRepository } from "@modules/notificationTypes/reposit
 import { NotificationTypesRepository } from "@modules/notificationTypes/infra/typeorm/repositories/NotificationTypesRepository";
 import { IStreetsRepository } from "@modules/streets/repositories/IStreetsRepository";
 import { StreetsRepository } from "@modules/streets/infra/typeorm/repositories/StreetsRepository";
-import { IGroupsRepository } from "@modules/groups/repositories/IGroupsRepository";
-import { GroupsRepository } from "@modules/groups/infra/typeorm/repositories/GroupsRepository";
-import { IGroupsStreetsRepository } from "@modules/groupsStreets/repositories/IGroupsStreetsRepository";
-import { GroupsStreetsRepository } from "@modules/groupsStreets/infra/typeorm/repositories/GroupsStreetsRepository";
 import { IResidencesRepository } from "@modules/residences/repositories/IResidencesRepository";
 import { ResidencesRepository } from "@modules/residences/infra/typeorm/repositories/ResidencesRepository";
-import { IUsersResidencesRepository } from "@modules/usersResidences/repositories/IUsersResidencesRepository";
-import { UsersResidencesRepository } from "@modules/usersResidences/infra/typeorm/repositories/UsersResidencesRepository";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository";
 import { IPetsRepository } from "@modules/pets/repositories/IPetsRepository";
@@ -47,24 +41,9 @@ container.registerSingleton<IStreetsRepository>(
     StreetsRepository
 );
 
-container.registerSingleton<IGroupsRepository>(
-    "GroupsRepository",
-    GroupsRepository
-);
-
-container.registerSingleton<IGroupsStreetsRepository>(
-    "GroupsStreetsRepository",
-    GroupsStreetsRepository
-);
-
 container.registerSingleton<IResidencesRepository>(
     "ResidencesRepository",
     ResidencesRepository
-);
-
-container.registerSingleton<IUsersResidencesRepository>(
-    "UsersResidencesRepository",
-    UsersResidencesRepository
 );
 
 container.registerSingleton<ICarsRepository>(

@@ -14,6 +14,9 @@ class User {
     id: string;
 
     @Column()
+    residence_id: string;
+
+    @Column()
     name: string;
 
     @Column()
@@ -26,7 +29,7 @@ class User {
     birth_date: Date;
 
     @Column()
-    cell: string;
+    cellphone: string;
 
     @Column()
     rg: string;
@@ -38,7 +41,13 @@ class User {
         type: "enum",
         enum: Role,
     })
-    user_role: Role;
+    role: Role;
+
+    @Column({
+        type: "enum",
+        enum: Role,
+    })
+    desired_role: Role;
 
     @Column()
     avatar: string;
@@ -52,7 +61,7 @@ class User {
     constructor(){
         if (!this.id) {
             this.id = uuidV4();
-            this.user_role = Role.UNIDENTIFIED;
+            this.role = Role.UNIDENTIFIED;
         }
     }
 }
