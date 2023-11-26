@@ -24,6 +24,10 @@ class ResidencesRepository implements IResidencesRepository {
 
         return residence;
     }
+    
+    async findById(id: string): Promise<Residence> {
+        return await this.repository.findOne(id)
+    }
 
     async findAllByStreetId (street_id: string): Promise<Residence[]> {
         return this.repository.find({street_id});
@@ -37,6 +41,10 @@ class ResidencesRepository implements IResidencesRepository {
                 street_id
             }
         });
+    }
+    
+    async list(): Promise<Residence[]> {
+        return await this.repository.find();
     }
 
 }

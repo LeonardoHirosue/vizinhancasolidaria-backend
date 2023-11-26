@@ -30,7 +30,7 @@ class CheckAuthUseCase {
         const userReturn: IResponse = {
             email: user.email,
             permissions: [],
-            roles: [user.user_role],
+            roles: [user.role],
         }
 
         return userReturn;

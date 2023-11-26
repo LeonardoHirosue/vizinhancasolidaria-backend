@@ -16,7 +16,7 @@ class CreateStreetUseCase {
         const streetAlreadtExists = await this.streetsReposity.findStreet({ name, state, city, district, postal_code });
 
         if (streetAlreadtExists) {
-            throw new BadRequestError("Street already exists!");
+            throw new BadRequestError("Esta rua já está cadastrada no sistema!");
         }
 
         const street = await this.streetsReposity.create({
