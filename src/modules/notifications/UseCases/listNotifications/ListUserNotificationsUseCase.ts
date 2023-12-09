@@ -1,15 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { INotificationsRepository } from "@modules/notifications/repositories/INotificationsRepository";
-
-interface IResponse{
-    id: string;
-    type_id: string;
-    status: string;
-    title: string;
-    description: string;
-    license_plate?: string;
-}
+import { Notification } from "@modules/notifications/infra/typeorm/entities/Notification";
 
 @injectable()
 class ListUserNotificationsUseCase {
@@ -19,21 +11,10 @@ class ListUserNotificationsUseCase {
         private notificationsRepository: INotificationsRepository
     ){}
 
-    async execute(user_id: string): Promise<IResponse[]>{
-        const notifications = await this.notificationsRepository.list(user_id)
+    async execute(): Promise<Notification[]>{
+        const notifications = await this.notificationsRepository.list()
 
-        const notificationsReturn: IResponse[] = notifications.map(notification => {
-            return({
-                id: notification.id,
-                type_id: notification.type_id,
-                status: notification.status,
-                title: notification.title,
-                description: notification.description,
-                license_plate: notification.license_plate
-            });
-        });
-
-        return notificationsReturn;
+        return notifications;
     }   
 }
 

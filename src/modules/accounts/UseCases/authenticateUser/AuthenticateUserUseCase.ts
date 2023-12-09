@@ -38,6 +38,7 @@ class AuthenticateUserUseCase {
     async execute({email, password}: IRequest): Promise<IResponse> {
         const user = await this.usersRepository.findByEmail(email);
         const { secret_token, expires_in_token, secret_refresh_token, expires_in_refresh_token, expires_refresh_token_days } = auth;
+        console.log("Authenticate User", user)
 
         if (!user) {
             throw new UnauthorizedError("Email or password incorrect!");            
@@ -49,7 +50,11 @@ class AuthenticateUserUseCase {
             throw new UnauthorizedError("Email or password incorrect!");
         }
 
-        const token = sign({}, secret_token, {
+        const token = sign({
+            email: user.email,
+            permissions: [],
+            roles: [user.role],
+        }, secret_token, {
             subject: user.id,
             expiresIn: expires_in_token,
         });
@@ -75,7 +80,7 @@ class AuthenticateUserUseCase {
             },
             refreshToken: refresh_token,
             permissions: [],
-            roles: [user.user_role],
+            roles: [user.role],
         }
 
         return tokenReturn;

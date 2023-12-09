@@ -1,6 +1,8 @@
+import { Street } from "@modules/streets/infra/typeorm/entities/Street";
+
 interface ICreateResidenceDTO {
     id?: string;
-    street_id: string;
+    street: Street;
     number: number;
 }
 

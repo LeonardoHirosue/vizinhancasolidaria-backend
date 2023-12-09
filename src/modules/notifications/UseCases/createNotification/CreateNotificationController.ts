@@ -6,7 +6,7 @@ import { CreateNotificationUseCase } from "./CreateNotificationUseCase";
 class CreateNotificationController {
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const { type_id, title, description, license_plate } = request.body;
+        const { type_id, description, license_plate } = request.body;
 
         const { id } = request.user;
 
@@ -15,12 +15,11 @@ class CreateNotificationController {
         const notification = await createNotificationUseCase.execute({ 
             user_id: id,
             type_id,
-            title,
             description,
             license_plate
         });
         
-        return response.status(201).json(notification);
+        return response.status(204).json(notification);
     }
 }
 

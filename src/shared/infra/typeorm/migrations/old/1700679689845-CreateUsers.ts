@@ -5,10 +5,11 @@ export class CreateUsers1700679689845 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
             CREATE TYPE role AS ENUM (
-                'unidentified', 
-                'resident', 
-                'tutor',
-                'admin'
+                'Não identificado(a)', 
+                'Morador(a)', 
+                'Anfitriã(o)',
+                'Tutor(a)',
+                'Administrador(a)'
             );
         `);
 

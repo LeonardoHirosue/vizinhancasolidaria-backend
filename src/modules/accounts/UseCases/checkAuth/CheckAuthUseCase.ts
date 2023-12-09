@@ -8,7 +8,9 @@ interface IRequest {
 }
 
 interface IResponse {
+    name: string;
     email: string;
+    avatar: string;
     permissions?: string[];
     roles?: string[];
 }
@@ -28,7 +30,9 @@ class CheckAuthUseCase {
         }
 
         const userReturn: IResponse = {
+            name: user.name,
             email: user.email,
+            avatar: user.avatar,
             permissions: [],
             roles: [user.role],
         }

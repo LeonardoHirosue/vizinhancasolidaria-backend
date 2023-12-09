@@ -21,11 +21,18 @@ class RefreshTokenUseCase {
     ){}
     
     async execute(token: string): Promise<String> {
+        console.log("ENTREI NO USECASE")
         const { email, sub } = verify(token, auth.secret_refresh_token) as IPayload;
+        console.log("EMAIL", email)
+        console.log("SUB", sub)
         
         const user_id = sub;
+        
+        console.log("TOKEN", token)
+        console.log("USER_ID", user_id)
 
         const userToken = await this.usersTokensRepository.findByUserIdAndRefreshToken(user_id, token);
+        console.log("userToken", userToken)
 
         if (!userToken) {
             throw new UnauthorizedError("Refresh Token does not exists!");

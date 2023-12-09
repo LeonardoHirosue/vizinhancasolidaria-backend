@@ -2,8 +2,8 @@ import { ICreateNotificationDTO } from "@modules/notifications/dtos/ICreateNotif
 import { Notification } from "@modules/notifications/infra/typeorm/entities/Notification";
 
 interface INotificationsRepository{
-    create(data: ICreateNotificationDTO): Promise<Notification>;
-    list(user_id: string): Promise<Notification[]>;
+    create(data: Notification): Promise<Notification>;
+    list(): Promise<Notification[]>;
     findById(id: string): Promise<Notification>;
     delete(id: string): Promise<void>;
 }

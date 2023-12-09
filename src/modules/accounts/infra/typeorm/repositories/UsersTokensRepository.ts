@@ -16,7 +16,9 @@ class UsersTokensRepository implements IUsersTokensRepository {
         const userToken = this.repository.create({
             expires_date,
             refresh_token,
-            user_id
+            user: {
+                id: user_id
+            }
         });
 
         await this.repository.save(userToken);
@@ -25,8 +27,11 @@ class UsersTokensRepository implements IUsersTokensRepository {
     }
 
     async findByUserIdAndRefreshToken(user_id: string, refresh_token: string): Promise<UserTokens> {
-        const userTokens = await this.repository.findOne({
-            user_id, refresh_token
+        const userTokens = await this.repository.findOneBy({
+            user: { 
+                id: user_id
+            }, 
+            refresh_token
         });
 
         return userTokens;
@@ -38,7 +43,7 @@ class UsersTokensRepository implements IUsersTokensRepository {
 
     
     async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
-        const userTokens = await this.repository.findOne({
+        const userTokens = await this.repository.findOneBy({
             refresh_token
         });
 

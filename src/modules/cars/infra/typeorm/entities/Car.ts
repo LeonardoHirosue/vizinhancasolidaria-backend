@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import { Residence } from '@modules/residences/infra/typeorm/entities/Residence';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { v4 as uuidV4 } from  'uuid';
 
 @Entity("cars")
@@ -6,8 +7,9 @@ class Car {
     @PrimaryColumn()
     id: string;
 
-    @Column()
-    residence_id: string;
+    @ManyToOne(() => Residence, residence => residence.cars)
+    @JoinColumn({name: "residence_id"})
+    residence: Residence;
 
     @Column()
     color: string;

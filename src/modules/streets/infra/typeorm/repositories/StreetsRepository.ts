@@ -51,11 +51,11 @@ class StreetsRepository implements IStreetsRepository {
     }
 
     async list(): Promise<Street[]> {
-        return await this.repository.find();
+        return await this.repository.find({ relations: { residences: true }});
     }
 
     async findById(id: string): Promise<Street> {
-        return await this.repository.findOne(id);
+        return await this.repository.findOneBy({id:id});
     }
 
     async delete(id: string): Promise<void> {

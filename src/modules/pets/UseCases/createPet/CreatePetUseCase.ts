@@ -13,14 +13,19 @@ class CreatePetUseCase {
         private petsRepository: IPetsRepository
     ){};
 
-    async execute({ id, residence_id, name, breed, description, url_image }: ICreatePetsDTO): Promise<Pet>{
+    async execute({ residence_id, name, breed, description, url_image }: ICreatePetsDTO): Promise<Pet>{
+        console.log("CreatePET UseCASE")
+        console.log("residence_id", residence_id)
+        console.log("name", name)
+        console.log("breed", breed)
+        console.log("description", description)
+        console.log("url_image", url_image)
         const pet = this.petsRepository.create({
-            id,
             residence_id,
             name,
             breed,
             description,
-            url_image
+            url_image,
         });
 
         return pet;

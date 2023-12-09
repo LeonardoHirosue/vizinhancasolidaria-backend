@@ -27,7 +27,7 @@ class NotificationTypesRepository implements INotificationTypesRepository{
     }
     
     async findById(id: string): Promise<NotificationType> {      
-        return await this.repository.findOne(id);
+        return await this.repository.findOneBy({ id: id });
     }
 
     async list(): Promise<NotificationType[]> {

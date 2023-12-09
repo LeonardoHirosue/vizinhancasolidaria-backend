@@ -7,19 +7,23 @@ import { CreateUserController } from "@modules/accounts/UseCases/createUser/Crea
 import { UpdateUserAvatarController } from "@modules/accounts/UseCases/updateUserAvatar/UpdateUserAvatarController";
 import { ListUsersController } from "@modules/accounts/UseCases/listUsers/ListUsersController";
 import { UserInfoController } from "@modules/accounts/UseCases/userInfo/UserInfoController";
+import { UpdateUserRoleController } from "@modules/accounts/UseCases/updateUserRole/UpdateUserRoleController";
 
 const usersRoutes = Router();
 
 const uploadAvatar = multer(uploadConfig.upload("./tmp/avatar"));
+// const uploadAvatar = multer(uploadConfig.upload("./"));
 
 const createUserController = new CreateUserController();
 const updateUserAvatarController = new UpdateUserAvatarController();
 const listUsersController = new ListUsersController();
 const userInforController = new UserInfoController();
+const updateUserRoleController = new UpdateUserRoleController();
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.get("/", listUsersController.handle);
 usersRoutes.get("/:id", userInforController.handle);
+usersRoutes.patch("/", ensureAuthenticate, updateUserRoleController.handle)
 
 usersRoutes.patch(
     "/avatar",

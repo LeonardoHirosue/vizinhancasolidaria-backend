@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Notification } from "@modules/notifications/infra/typeorm/entities/Notification";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 enum Label {
@@ -24,6 +25,9 @@ class NotificationType {
 
     @CreateDateColumn()
     created_at: Date;  
+
+    @OneToMany(() => Notification, alert => alert.type)
+    alerts: Notification[];
 
     constructor(){
         if (!this.id) {

@@ -1,11 +1,16 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Residence } from "@modules/residences/infra/typeorm/entities/Residence";
+import { Informative } from "@modules/informative/infra/typeorm/entities/Informative";
+import { Notification } from "@modules/notifications/infra/typeorm/entities/Notification";
+import { UserTokens } from "./UserTokens";
 
 enum Role {
-    UNIDENTIFIED = "unidentified", 
-    RESIDENT = "resident", 
-    TUTOR = "tutor",
-    ADMIN = "admin"
+    UNIDENTIFIED = "Não identificado(a)", 
+    RESIDENT = "Morador(a)",
+    HOST = "Anfitriã(o)", 
+    TUTOR = "Tutor(a)",
+    ADMIN = "Administrador(a)"
 }
 
 @Entity("users")
@@ -13,8 +18,9 @@ class User {
     @PrimaryColumn()
     id: string;
 
-    @Column()
-    residence_id: string;
+    @ManyToOne(() => Residence, residence => residence.users)
+    @JoinColumn({ name: 'residence_id'})
+    residence: Residence;
 
     @Column()
     name: string;
@@ -49,7 +55,9 @@ class User {
     })
     desired_role: Role;
 
-    @Column()
+    @Column({
+        nullable:true,
+    })
     avatar: string;
 
     @UpdateDateColumn()
@@ -57,6 +65,15 @@ class User {
 
     @CreateDateColumn()
     created_at: Date;
+
+    @OneToMany(() => Informative, informative => informative.user)
+    informatives: Informative[];
+
+    @OneToMany(() => Notification, alert => alert.user)
+    alerts: Notification[];
+
+    @OneToMany(() => UserTokens, user_tokens => user_tokens.user)
+    user_tokens: UserTokens[];
 
     constructor(){
         if (!this.id) {

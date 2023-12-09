@@ -13,10 +13,11 @@ class PetsRepository implements IPetsRepository{
         this.repository = getRepository(Pet);
     }
 
-    async create({ id, residence_id, name, breed, description, url_image}: ICreatePetsDTO): Promise<Pet> {
+    async create({ residence_id, name, breed, description, url_image}: ICreatePetsDTO): Promise<Pet> {
         const pet = this.repository.create({
-            id,
-            residence_id,
+            residence:{
+                id: residence_id
+            },
             name,
             breed,
             description,
@@ -29,7 +30,7 @@ class PetsRepository implements IPetsRepository{
     }
 
     async findById(id: string): Promise<Pet> {
-        return await this.repository.findOne(id);
+        return await this.repository.findOneBy({id});
     }
 
     async delete(id: string): Promise<void> {

@@ -5,12 +5,12 @@ import { CreateResidenceUseCase } from "./CreateResidenceUseCase";
 
 class CreateResidenceController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { street_id, number } = request.body;
+        const { street, number } = request.body;
 
         const createResidenceUseCase = container.resolve(CreateResidenceUseCase);
 
         const residence = await createResidenceUseCase.execute({
-            street_id,
+            street,
             number
         });
 

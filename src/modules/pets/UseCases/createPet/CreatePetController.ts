@@ -5,7 +5,11 @@ import { CreatePetUseCase } from "./CreatePetUseCase";
 
 class CreatePetController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, residence_id, name, breed, description, url_image } = request.body;
+        console.log("CREATE PET CONTROLLER")
+        const { id, residence_id, name, breed, description } = request.body;
+        const url_image = request.file.filename;
+
+        console.log("Residence ID", residence_id)
 
         const createPetUseCase = container.resolve(CreatePetUseCase);
 

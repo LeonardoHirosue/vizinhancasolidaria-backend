@@ -34,8 +34,10 @@ class CreateUserUseCase {
     residence_number,
     desired_role
   }: ISignUpUserDTO): Promise<void> {
+    console.log("residence_number",residence_number)
+    console.log("email",email)
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
-
+    console.log("userAlreadyExists", userAlreadyExists)
     if (userAlreadyExists) {
       throw new BadRequestError("User already existis!");
     }
@@ -48,25 +50,26 @@ class CreateUserUseCase {
       city, 
       district, 
       postal_code 
-    });
+    })
 
     if(!streetsFound){
       throw new NotFoundError("Street not found");         
     }
 
     const residenceFound = await this.residencesRepository.findResidence({ 
-      street_id:streetsFound.id, 
-      number: residence_number 
+      number: residence_number, 
+      street:streetsFound, 
     });
 
+    
     if (!residenceFound) {
       const newResidence = await this.residencesRepository.create({
-        street_id: streetsFound.id,
+        street: streetsFound,
         number: residence_number,
       });
-
-      await this.usersRepository.create({
-        residence_id: newResidence.id,
+      
+      const newUser = await this.usersRepository.create({
+        residence: newResidence,
         name,
         email,
         password: passwordHash,
@@ -76,9 +79,11 @@ class CreateUserUseCase {
         cpf,
         desired_role,
       });
-    } else {
+      console.log("newUser", newUser);
+    } 
+    else {
       await this.usersRepository.create({
-        residence_id: residenceFound.id,
+        residence: residenceFound,
         name,
         email,
         password: passwordHash,

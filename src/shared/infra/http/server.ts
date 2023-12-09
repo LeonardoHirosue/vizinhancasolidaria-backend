@@ -9,6 +9,7 @@ import createConnection from "@shared/infra/typeorm";
 import { router } from "./routes";
 
 createConnection();
+
 const app = express();
 const cors = require('cors');
 const corsOptions ={

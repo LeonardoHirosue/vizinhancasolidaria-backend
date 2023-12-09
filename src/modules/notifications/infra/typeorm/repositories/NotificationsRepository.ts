@@ -13,20 +13,14 @@ class NotificationsRepository implements INotificationsRepository{
     }
     
     async create({ 
-        id,
-        user_id,
-        type_id,
-        status, 
-        title, 
-        description, 
-        license_plate 
-    }: ICreateNotificationDTO): Promise<Notification> {
+        user,
+        type,
+        description,
+        license_plate,
+    }: Notification): Promise<Notification> {
         const notification = this.repository.create({
-            id,
-            user_id,
-            type_id,
-            status,
-            title,
+            user,
+            type,
             description,
             license_plate
         });
@@ -36,13 +30,13 @@ class NotificationsRepository implements INotificationsRepository{
         return notification;
     }
     
-    async list(user_id: string): Promise<Notification[]> {
-        const notifications = await this.repository.find({ user_id })
-        return notifications;
+    async list(): Promise<Notification[]> {
+        return await this.repository.find({ relations: { type: true }})
+        // return notifications;
     }
 
     async findById(id: string): Promise<Notification> {
-        const notification = await this.repository.findOne(id);
+        const notification = await this.repository.findOneBy({id:id});
         return notification;
     }
 

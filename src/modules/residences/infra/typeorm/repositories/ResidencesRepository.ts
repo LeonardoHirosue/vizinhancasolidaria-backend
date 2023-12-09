@@ -4,19 +4,21 @@ import { ICreateResidenceDTO } from "@modules/residences/dtos/ICreateResidenceDT
 import { IResidencesRepository } from "@modules/residences/repositories/IResidencesRepository";
 
 import { Residence } from "../entities/Residence";
+import { Street } from "@modules/streets/infra/typeorm/entities/Street";
 
 class ResidencesRepository implements IResidencesRepository {
 
     private repository: Repository<Residence>;
+    private streetRepository: Repository<Street>;
 
     constructor(){
         this.repository = getRepository(Residence);
+        this.streetRepository = getRepository(Street);
     }
 
-    async create({ id, street_id, number }: ICreateResidenceDTO): Promise<Residence> {
+    async create({ street, number }: ICreateResidenceDTO): Promise<Residence> {
         const residence = this.repository.create({
-            id,
-            street_id,
+            street: street,
             number
         });
 
@@ -29,22 +31,31 @@ class ResidencesRepository implements IResidencesRepository {
         return await this.repository.findOne(id)
     }
 
-    async findAllByStreetId (street_id: string): Promise<Residence[]> {
-        return this.repository.find({street_id});
+    async findAllByStreetId (street: string): Promise<Residence[]> {
+        return this.repository.find({street});
     }
 
     
-    async findResidence({ street_id, number }: ICreateResidenceDTO): Promise<Residence> {
+    async findResidence({ street, number }: ICreateResidenceDTO): Promise<Residence> {
         return await this.repository.findOne({
             where: {
                 number,
-                street_id
+                street: {
+                    id: street.id,
+                }
             }
         });
     }
     
     async list(): Promise<Residence[]> {
-        return await this.repository.find();
+        return await this.repository.find({ 
+            relations: { 
+                street: true, 
+                pets: true, 
+                cars:true, 
+                users:true 
+            }
+        });
     }
 
 }

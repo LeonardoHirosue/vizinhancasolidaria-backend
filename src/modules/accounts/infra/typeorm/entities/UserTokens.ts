@@ -12,11 +12,8 @@ class UserTokens {
     @Column()
     refresh_token: string;
 
-    @Column()
-    user_id: string;
-
-    @ManyToOne(() => User)
-    @JoinColumn({ name: "user_id" })
+    @ManyToOne(() => User, user => user.user_tokens)
+    @JoinColumn({ name: "user_id"})
     user: User;
 
     @Column()
